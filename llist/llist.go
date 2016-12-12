@@ -119,3 +119,18 @@ func (l *List) Reverse() (err error) {
 
 	return err
 }
+
+// Swap with another list.
+func (l *List) Swap(r *List) {
+	temp := l.head
+	l.head = r.head
+	r.head = temp
+
+	temp = l.tail
+	l.tail = r.tail
+	r.tail = temp
+
+	tempLen := l.length
+	l.length = r.length
+	r.length = tempLen
+}
