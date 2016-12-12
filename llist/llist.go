@@ -13,6 +13,16 @@ type List struct {
 	tail linked.Noder
 }
 
+// Get the head node.
+func (l *List) Head() linked.Noder {
+	return l.head
+}
+
+// Get the tail node.
+func (l *List) Tail() linked.Noder {
+	return l.tail
+}
+
 // Append adds the given node as the tail of the list.
 func (l *List) Append(n linked.Noder) (err error) {
 	if l.head == nil {
