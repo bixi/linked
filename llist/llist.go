@@ -134,3 +134,10 @@ func (l *List) Swap(r *List) {
 	l.length = r.length
 	r.length = tempLen
 }
+
+// Clear list.
+func (l *List) Clear() {
+	l.head = nil
+	l.tail = nil
+	l.length = 0
+}
