@@ -77,6 +77,61 @@ func TestAppend(t *testing.T) {
 	}
 }
 
+func TestRemove(t *testing.T) {
+	cases := generateCases()
+	for _, c := range cases {
+		head, tail := generateLinks(c.numNodes)
+		linkedList := &List{head: head, tail: tail}
+
+		if (linkedList.Length() == 0) {
+			newNode := new(node.Dnode)
+			newNode.SetData(0)
+			linkedList.Push(newNode)
+		}
+
+		head = linkedList.Head()
+		newHead, _, _ := head.Next()
+		linkedList.Remove(head)
+		head = linkedList.Head()
+		if newHead != head {
+			t.Error("Remove head node error.")
+		}
+
+		if (linkedList.length == 0) {
+			newNode := new(node.Dnode)
+			newNode.SetData(0)
+			linkedList.Push(newNode)
+		}
+
+		tail = linkedList.Tail()
+		newTail, _, _ := tail.Prev()
+		linkedList.Remove(tail)
+		tail = linkedList.Tail()
+		if newTail != tail {
+			t.Error("Remove tail node error.")
+		}
+
+		if (linkedList.length > 2) {
+			node, _, _ := linkedList.Head().Next()
+			prev, _, _ := node.Prev()
+			next, _, _ := node.Next()
+			linkedList.Remove(node)
+			if p, _, _ := node.Prev(); p != nil {
+				t.Error("Remove node error.")
+			}
+			if n, _, _ := node.Next(); n != nil {
+				t.Error("Remove node error.")
+			}
+			if n, _, _ := prev.Next(); n != next {
+				t.Error("Remove node error.")
+			}
+			if p, _, _ := next.Prev(); p != prev {
+				t.Error("Remove node error.")
+			}
+		}
+	}
+}
+
 func TestPush(t *testing.T) {
 	cases := generateCases()
 	for _, c := range cases {
