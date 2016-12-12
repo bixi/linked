@@ -7,6 +7,10 @@ type Lister interface {
 	Append(Noder, error)
 	Push(Noder, error)
 	Pop() Noder
+	Remove(Noder) error
+	Head() Noder
+	Tail() Noder
+	Length() uint
 }
 
 type Noder interface {
