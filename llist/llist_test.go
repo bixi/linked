@@ -209,3 +209,23 @@ func TestReverse(t *testing.T) {
 		}
 	}
 }
+
+func TestSwap(t *testing.T) {
+	cases := generateCases()
+	for _, c := range cases {
+		head, tail := generateLinks(c.numNodes)
+		linkedList := &List{head: head, tail: tail}
+
+		head1, tail1 := generateLinks(c.numNodes)
+		linkedList1 := &List{head: head1, tail: tail1}
+
+		linkedList.Swap(linkedList1)
+		if linkedList.head != head1 || linkedList.tail != tail1 {
+			t.Error("Swap failed.")
+		}
+
+		if linkedList1.head != head || linkedList1.tail != tail {
+			t.Error("Swap failed.")
+		}
+	}
+}
